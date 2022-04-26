@@ -16,35 +16,18 @@ namespace WindowsFormsApp3
     public partial class frm_account : Form
     {
         public string _id;
+        public string _sifre;
         public frm_account(string id)
         {
             InitializeComponent();
             _id = id;
         }
         sqlBaglantisi bgl = new sqlBaglantisi();
-        //        private void frm_account_Load(object sender, EventArgs e)
-        //        {
-
-        //            SqlCommand komut = new SqlCommand("select Doktor_id, Brans_ad, Unvan_ad, Doktor_ad, Doktor_soyad from tbl_doktor inner join tbl_brans on tbl_doktor.Doktor_brans_id = tbl_brans.Brans_id" +
-        //" inner join tbl_unvan on tbl_unvan.Unvan_id = tbl_doktor.Doktor_unvan where tbl_doktor.Doktor_id = '" + _id + "'", bgl.baglanti());
-        //            komut.Parameters.AddWithValue("@p1", txtdid.Text);
-        //            SqlDataReader dr = komut.ExecuteReader();
-        //            while (dr.Read())
-        //            {
-        //                txtdid.Text = dr[0].ToString();
-        //                txtdbrans.Text = dr[1].ToString();
-        //                txtdunvan.Text = dr[2].ToString();
-        //                txtdad.Text = dr[3].ToString();
-        //                txtdsoyad.Text = dr[4].ToString();
-        //                pictureBox2.Image = Image.FromStream(dr[5]);
-        //            }
-        //            bgl.baglanti().Close();
-        //        }
 
         private void frm_account_Load(object sender, EventArgs e)
         {
 
-            SqlCommand komut = new SqlCommand("select Doktor_id, Brans_ad, Unvan_ad, Doktor_ad, Doktor_soyad, Doktor_resim from tbl_doktor inner join tbl_brans on tbl_doktor.Doktor_brans_id = tbl_brans.Brans_id" +
+            SqlCommand komut = new SqlCommand("select Doktor_id, Brans_ad, Unvan_ad, Doktor_ad, Doktor_soyad, Doktor_resim, Doktor_sifre from tbl_doktor inner join tbl_brans on tbl_doktor.Doktor_brans_id = tbl_brans.Brans_id" +
 " inner join tbl_unvan on tbl_unvan.Unvan_id = tbl_doktor.Doktor_unvan where tbl_doktor.Doktor_id = '" + _id + "'", bgl.baglanti());
             komut.Parameters.AddWithValue("@p1", txtdid.Text);
             SqlDataReader dr = komut.ExecuteReader();
@@ -56,6 +39,7 @@ namespace WindowsFormsApp3
                 txtdad.Text = dr[3].ToString();
                 txtdsoyad.Text = dr[4].ToString();
                 pictureBox2.ImageLocation = dr[5].ToString();
+                _sifre = dr[6].ToString();
             }
             bgl.baglanti().Close();
         }
@@ -67,9 +51,21 @@ namespace WindowsFormsApp3
 
         private void button2_Click(object sender, EventArgs e)
         {
-            if ((txtsifre3 != txtsifre2) && (txtsifre == txtsifre3) && (txtsifre == txtsifre2))
+            if (txtsifre3.Text != txtsifre2.Text)
             {
                 MessageBox.Show("Yeni Şifre ve  Yeni Şifre Tekrar Aynı Olmalı!", "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else if ((txtsifre.Text == txtsifre3.Text) || (txtsifre.Text == txtsifre2.Text))
+            {
+                MessageBox.Show("Eski Şifreniz İle Yeni Şifreniz Aynı Olamaz!", "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else if (_sifre != txtsifre.Text)
+            {
+                MessageBox.Show("Mevcut Şifrenizi Doğru Giriniz!", "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else if(txtsifre2.Text == null || txtsifre3.Text == null)
+            {
+                MessageBox.Show("Yeni Şifrenizi Boş Bırakamazsınız!", "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             else
             {
