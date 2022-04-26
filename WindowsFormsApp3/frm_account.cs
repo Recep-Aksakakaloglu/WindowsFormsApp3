@@ -28,7 +28,7 @@ namespace WindowsFormsApp3
         {
 
             SqlCommand komut = new SqlCommand("select Doktor_id, Brans_ad, Unvan_ad, Doktor_ad, Doktor_soyad, Doktor_resim, Doktor_sifre from tbl_doktor inner join tbl_brans on tbl_doktor.Doktor_brans_id = tbl_brans.Brans_id" +
-" inner join tbl_unvan on tbl_unvan.Unvan_id = tbl_doktor.Doktor_unvan where tbl_doktor.Doktor_id = '" + _id + "'", bgl.baglanti());
+            " inner join tbl_unvan on tbl_unvan.Unvan_id = tbl_doktor.Doktor_unvan where tbl_doktor.Doktor_id = '" + _id + "'", bgl.baglanti());
             komut.Parameters.AddWithValue("@p1", txtdid.Text);
             SqlDataReader dr = komut.ExecuteReader();
             while (dr.Read())
@@ -63,7 +63,7 @@ namespace WindowsFormsApp3
             {
                 MessageBox.Show("Mevcut Şifrenizi Doğru Giriniz!", "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-            else if(txtsifre2.Text == null || txtsifre3.Text == null)
+            else if(txtsifre2.Text == null && txtsifre3.Text == null)
             {
                 MessageBox.Show("Yeni Şifrenizi Boş Bırakamazsınız!", "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
