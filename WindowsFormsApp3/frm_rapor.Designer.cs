@@ -72,7 +72,6 @@ namespace WindowsFormsApp3
             this.label14 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.panel9 = new System.Windows.Forms.Panel();
-            this.label21 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -81,6 +80,7 @@ namespace WindowsFormsApp3
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel10 = new System.Windows.Forms.Panel();
             this.button2 = new System.Windows.Forms.Button();
+            this.label21 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -516,16 +516,6 @@ namespace WindowsFormsApp3
             this.panel9.TabIndex = 8;
             this.panel9.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel9_MouseDown);
             // 
-            // label21
-            // 
-            this.label21.AutoSize = true;
-            this.label21.Enabled = false;
-            this.label21.Location = new System.Drawing.Point(216, 39);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(54, 17);
-            this.label21.TabIndex = 6;
-            this.label21.Text = "label21";
-            // 
             // label19
             // 
             this.label19.Location = new System.Drawing.Point(948, 87);
@@ -605,6 +595,16 @@ namespace WindowsFormsApp3
             this.button2.Text = "KAYDET";
             this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Enabled = false;
+            this.label21.Location = new System.Drawing.Point(216, 39);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(54, 17);
+            this.label21.TabIndex = 6;
+            this.label21.Text = "label21";
             // 
             // frm_rapor
             // 

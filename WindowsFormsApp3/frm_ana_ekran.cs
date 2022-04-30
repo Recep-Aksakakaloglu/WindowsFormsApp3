@@ -25,10 +25,21 @@ namespace WindowsFormsApp3
 
         sqlBaglantisi baglanti = new sqlBaglantisi();
 
+        public string gun;
+        //string theDate = dateTimePicker1.Value.ToShortDateString();
         private void button2_Click(object sender, EventArgs e)
         {
+            string theDate = dateTimePicker1.Value.ToShortDateString();
+            SqlCommand komut = new SqlCommand("SELECT convert(varchar, getdate(), 104)", bgl.baglanti());
+            SqlDataReader dr = komut.ExecuteReader();
+            while (dr.Read())
+            {
+                gun = dr[0].ToString();
+            }
+            bgl.baglanti().Close();
+
             DataTable dt = new DataTable();
-            SqlDataAdapter da = new SqlDataAdapter("Select tbl_hasta.Hasta_id, tbl_hasta.Hasta_ad, tbl_hasta.Hasta_soyad, tbl_randevu.Randevu_tarih, tbl_randevu.Randevu_saat from tbl_randevu inner join tbl_hasta on tbl_randevu.Randevu_hasta = tbl_hasta.Hasta_id inner join tbl_doktor on tbl_doktor.Doktor_id = tbl_randevu.Randevu_doktor where tbl_randevu.Randevu_doktor  = '" + _idd + "' AND tbl_randevu.Randevu_taburcu = 'False'", bgl.baglanti());
+            SqlDataAdapter da = new SqlDataAdapter("Select tbl_hasta.Hasta_id, tbl_hasta.Hasta_ad, tbl_hasta.Hasta_soyad, tbl_randevu.Randevu_tarih, tbl_randevu.Randevu_saat from tbl_randevu inner join tbl_hasta on tbl_randevu.Randevu_hasta = tbl_hasta.Hasta_id inner join tbl_doktor on tbl_doktor.Doktor_id = tbl_randevu.Randevu_doktor where tbl_randevu.Randevu_doktor  = '" + _idd + "' AND tbl_randevu.Randevu_taburcu = 'False' AND Randevu_tarih  = '"+gun+"'", bgl.baglanti());
             da.Fill(dt);
             dataGridView1.DataSource = dt;
         }
